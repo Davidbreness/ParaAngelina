@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresa mi princesa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilo general */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fbe7f3;
+            color: #ac129f;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            justify-content: center;
+        }
+
+        h1, h2 {
+            font-size: 2.5rem;
+            color: #d76bff;
+            text-align: center;
+            margin: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .button-container button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #ff8bfc;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container button:hover {
+            background-color: #f56cff;
+            transform: scale(1.05);
+        }
+
+        .button-container button:focus {
+            outline: none;
+        }
+
+        .part {
+            display: none;
+            width: 90%;
+            max-width: 800px;
+            text-align: left;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            top: 20px;
+        }
+
+        .part p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .part.fadeIn {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .background {
+            background-color: #fbe7f3;
+            padding: 40px 0;
+            width: 100%;
+        }
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .content-wrapper .part {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button-container button {
+                width: 80%;
+                margin-bottom: 10px;
+            }
+            .part {
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+                margin: 15px;
+            }
+
+            .button-container button {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+
+            .part p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Estilos para el formulario de login */
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #ff8bfc;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-container button:hover {
+            background-color: #f56cff;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <h1 id="login-title">Pon el Codigo mi vida</h1>
+        <h2 id="logged-in-title" style="display: none;">100 razones para amarte</h2>
+
+        <div id="login-section" class="login-container">
+            <h3>Por favor, ingresa el código</h3>
+            <input type="text" id="login-code" placeholder="Introduce el código">
+            <button onclick="validateLogin()">Iniciar sesión</button>
+            <p id="error-message" class="error-message">Código incorrecto. Intenta nuevamente.</p>
+        </div>
+
+        <div id="content-section" class="content-wrapper" style="display: none;">
+            <div class="button-container">
+                <button onclick="showPart(1)">Parte 1/5</button>
+                <button onclick="showPart(2)">Parte 2/5</button>
+                <button onclick="showPart(3)">Parte 3/5</button>
+                <button onclick="showPart(4)">Parte 4/5</button>
+                <button onclick="showPart(5)">Parte 5/5</button>
+            </div>
+
+            <div class="content-wrapper">
+            <!-- Secciones de las razones -->
+            <div id="part-1" class="part">
+                <p>1. Porque tu sonrisa ilumina mis días, incluso los grises.</p>
+                <p>2. Porque cuando te ríes, el mundo parece más suave.</p>
+                <p>3. Porque en tus ojos se refleja la paz que necesito.</p>
+                <p>4. Porque tus ocurrencias me sacan risas inesperadas.</p>
+                <p>5. Porque contigo hasta el silencio es cómodo.</p>
+                <p>6. Porque tus abrazos curan más que mil medicamentos.</p>
+                <p>7. Porque tu rubio brilla más que el sol cuando estás feliz.</p>
+                <p>8. Porque tu voz es mi sonido favorito.</p>
+                <p>9. Porque tus ideas me hacen pensar y sentir a la vez.</p>
+                <p>10. Porque haces que quiera ser mejor sin que me lo pidas.</p>
+                <p>11. Porque me inspiras hasta cuando no lo sabes.</p>
+                <p>12. Porque tus defectos te hacen aún más humana y hermosa.</p>
+                <p>13. Porque tu mirada me desarma.</p>
+                <p>14. Porque cada mensaje tuyo me arranca una sonrisa tonta.</p>
+                <p>15. Porque me haces sentir afortunado de conocerte.</p>
+                <p>16. Porque contigo descubrí lo que es extrañar de verdad.</p>
+                <p>17. Porque me haces reír cuando más lo necesito.</p>
+                <p>18. Porque tienes una forma única de ver la vida.</p>
+                <p>19. Porque tu dulzura no se finge, se siente.</p>
+                <p>20. Porque me haces sentir en casa, incluso a kilómetros de distancia.</p>
+            </div>
+
+            <div id="part-2" class="part">
+                <p>21. Porque contigo los lunes no pesan tanto.</p>
+                <p>22. Porque me encanta cómo te emocionas por cosas pequeñas.</p>
+                <p>23. Porque tienes un corazón más grande que tu belleza.</p>
+                <p>24. Porque tu espontaneidad me conquista cada día.</p>
+                <p>25. Porque sabes escuchar sin juzgar.</p>
+                <p>26. Porque cuando te veo, el resto del mundo se borra.</p>
+                <p>27. Porque no hay otra risa como la tuya.</p>
+                <p>28. Porque tus locuras combinan perfecto con las mías.</p>
+                <p>29. Porque me encanta cómo te mueves, incluso sin darte cuenta.</p>
+                <p>30. Porque haces que amar parezca sencillo.</p>
+                <p>31. Porque hasta tus enojos tienen su ternura.</p>
+                <p>32. Porque sabes cuándo necesito un “te entiendo” y no un consejo.</p>
+                <p>33. Porque no finges ser alguien que no eres.</p>
+                <p>34. Porque me enseñaste a valorar los detalles.</p>
+                <p>35. Porque contigo aprendí que el amor también se siente en el pecho.</p>
+                <p>36. Porque tu perfume se queda en mi mente.</p>
+                <p>37. Porque me haces ver lo bueno en mí, incluso cuando yo no lo veo.</p>
+                <p>38. Porque eres única entre millones.</p>
+                <p>39. Porque tienes esa luz que no se compra ni se aprende.</p>
+                <p>40. Porque haces que hasta lo cotidiano se vuelva especial.</p>
+            </div>
+
+            <div id="part-3" class="part">
+                <p>41. Porque contigo los minutos vuelan, pero los recuerdos duran.</p>
+                <p>42. Porque tus imperfecciones me parecen perfectas.</p>
+                <p>43. Porque el mundo debería tener más personas como tú.</p>
+                <p>44. Porque contigo entendí lo que es admirar a alguien de verdad.</p>
+                <p>45. Porque incluso tus silencios dicen mucho.</p>
+                <p>46. Porque cada vez que te veo, me vuelvo a enamorar.</p>
+                <p>47. Porque me das paz sin pedírtela.</p>
+                <p>48. Porque contigo, lo simple se vuelve mágico.</p>
+                <p>49. Porque eres un poema que aún no he terminado de leer.</p>
+                <p>50. Porque incluso cuando no estás, te siento conmigo.</p>
+                <p>51. Porque tu forma de ver la vida me da esperanza.</p>
+                <p>52. Porque eres una mezcla perfecta entre ternura y fuerza.</p>
+                <p>53. Porque sabes lo que vales y no te conformas.</p>
+                <p>54. Porque me haces sentir orgulloso solo por conocerte.</p>
+                <p>55. Porque cuando hablo de ti, me brillan los ojos.</p>
+                <p>56. Porque tu risa es la melodía más bonita que conozco.</p>
+                <p>57. Porque cuando me miras, todo se detiene.</p>
+                <p>58. Porque me haces sentir visto, escuchado y querido.</p>
+                <p>59. Porque contigo aprendí a valorar el presente.</p>
+                <p>60. Porque me haces soñar con un futuro compartido.</p>
+
+            </div>
+
+            <div id="part-4" class="part">
+                <p>61. Porque me haces querer cuidar tu mundo como si fuera el mío.</p>
+                <p>62. Porque sabes cuándo bromear y cuándo estar seria.</p>
+                <p>63. Porque tus abrazos son mi lugar favorito.</p>
+                <p>64. Porque me haces sentir importante sin esfuerzo.</p>
+                <p>65. Porque tienes una dulzura que no se puede imitar.</p>
+                <p>66. Porque cuando estoy contigo, todo tiene sentido.</p>
+                <p>67. Porque incluso en tus días malos, sigues siendo maravillosa.</p>
+                <p>68. Porque no hay nadie que me motive más.</p>
+                <p>69. Porque tienes una mirada que atraviesa cualquier máscara.</p>
+                <p>70. Porque tu luz es real, no necesita filtros.</p>
+                <p>71. Porque me haces querer aprender de ti.</p>
+                <p>72. Porque contigo descubrí lo que es amar sin medida.</p>
+                <p>73. Porque tu forma de amar es libre y sincera.</p>
+                <p>74. Porque me haces sentir afortunado solo por existir en tu mundo.</p>
+                <p>75. Porque con una palabra tuya me basta para calmarme.</p>
+                <p>76. Porque tu risa debería ser declarada patrimonio de la humanidad.</p>
+                <p>77. Porque me haces sentir mariposas incluso en la rutina.</p>
+                <p>78. Porque tienes una belleza que nace del alma.</p>
+                <p>79. Porque sabes ver lo bueno en la gente.</p>
+                <p>80. Porque cuando me miras, siento que todo estará bien.</p>
+
+
+            </div>
+
+            <div id="part-5" class="part">
+                <p>81. Porque me aceptas como soy, sin cambiarme.</p>
+                <p>82. Porque contigo no tengo miedo a ser vulnerable.</p>
+                <p>83. Porque tienes una forma de amar que no aprieta, solo abraza.</p>
+                <p>84. Porque tu presencia mejora cualquier lugar.</p>
+                <p>85. Porque me haces creer en el amor de verdad.</p>
+                <p>86. Porque tu risa es más efectiva que el café.</p>
+                <p>87. Porque tu voz me calma más que una canción favorita.</p>
+                <p>88. Porque no necesito entenderte para amarte, solo sentirte.</p>
+                <p>89. Porque me haces sentir más valiente.</p>
+                <p>90. Porque contigo descubrí que el amor también puede ser paz.</p>
+                <p>91. Porque eres tan real que a veces me cuesta creerlo.</p>
+                <p>92. Porque hasta en tus errores, hay belleza.</p>
+                <p>93. Porque me das ganas de escribirte mil cartas.</p>
+                <p>94. Porque tu existencia ya es un regalo.</p>
+                <p>95. Porque haces del mundo un lugar mejor, sin saberlo.</p>
+                <p>96. Porque cada día contigo es una aventura distinta.</p>
+                <p>97. Porque me das ganas de cuidar cada rincón de tu ser.</p>
+                <p>98. Porque a tu lado, el amor se vuelve fácil.</p>
+                <p>99. Porque tu forma de mirar el mundo me enamora.</p>
+                <p>100. Porque eres tú. Y eso basta para amarte sin medida.</p>
+        </div>
+    </div>
+
+    <script>
+        function showPart(partNumber) {
+            const parts = document.querySelectorAll('.part');
+            parts.forEach(part => {
+                part.style.display = 'none';
+            });
+            const partToShow = document.getElementById('part-' + partNumber);
+            partToShow.style.display = 'block';
+            partToShow.classList.add('fadeIn');
+        }
+
+        function validateLogin() {
+            const enteredCode = document.getElementById('login-code').value;
+            const correctCode = "12/12/2006";
+            const errorMessage = document.getElementById('error-message');
+            if (enteredCode === correctCode) {
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('content-section').style.display = 'block';
+                document.getElementById('login-title').style.display = 'none';  // Ocultar el h1
+                document.getElementById('logged-in-title').style.display = 'block';  // Mostrar el h2
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
